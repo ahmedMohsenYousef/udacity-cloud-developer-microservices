@@ -10,5 +10,4 @@ RUN npm install
 
 EXPOSE 8100
 
-# ENTRYPOINT ["ionic"]
 CMD ["ionic", "serve","--external"]
