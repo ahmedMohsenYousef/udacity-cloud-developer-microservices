@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-microservices-reverse-proxy
+  labels:
+    app: udagram-microservices-reverse-proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-microservices-reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: udagram-microservices-reverse-proxy
+    spec:
+      containers:
+      - name: udagram-reverse-proxy
+        image: ahmedmohsenyousef/udagram-reverse-proxy
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
