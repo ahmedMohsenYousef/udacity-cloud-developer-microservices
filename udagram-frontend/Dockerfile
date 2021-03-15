@@ -10,4 +10,4 @@ RUN npm install
 
 EXPOSE 8100
 
-CMD ["ionic", "serve","--external","--disable-host-check"]
+CMD ["ionic", "serve","--external","--host=0.0.0.0"]
