@@ -19,4 +19,7 @@ spec:
         image: ahmedmohsenyousef/udagram-reverse-proxy
         imagePullPolicy: Always
         ports:
+        - containerPort: 8100
+          name: frontend
         - containerPort: 8080
+          name: backend

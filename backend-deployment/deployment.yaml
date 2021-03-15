@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-microservices-backend
+  labels:
+    app: udagram-microservices-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-microservices-backend
+  template:
+    metadata:
+      labels:
+        app: udagram-microservices-backend
+    spec:
+      containers:
+      - name: udagram-api-users
+        image: ahmedmohsenyousef/udagram-api-users
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m" 
+        ports:
+        - containerPort: 8082
+        
+      - name: udagram-api-feed
+        image: ahmedmohsenyousef/udagram-api-feed
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m" 
+        ports:
+        - containerPort: 8081
