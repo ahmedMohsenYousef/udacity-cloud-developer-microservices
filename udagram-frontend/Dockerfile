@@ -1,13 +1,12 @@
-FROM node:11
+FROM beevelop/ionic AS ionic
 
-WORKDIR /www/app
+WORKDIR /usr/src/app
 
-COPY . /www/app
+COPY package*.json ./
+RUN npm ci
 
-RUN npm install -g cordova ionic
+COPY . .
+RUN ionic build
 
-RUN npm install
-
-EXPOSE 8100
-
-CMD ["ionic", "serve","--external","--host=0.0.0.0"]
+FROM nginx:alpine
+COPY --from=ionic /usr/src/app/www /usr/share/nginx/html
