@@ -19,5 +19,5 @@ spec:
         image: ahmedmohsenyousef/udagram-frontend
         imagePullPolicy: Always
         ports:
-        - containerPort: 8100
+        - containerPort: 80
         

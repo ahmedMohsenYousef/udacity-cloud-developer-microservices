@@ -20,16 +20,16 @@ script:
   - docker --version # print the version for logging
   
   - cd reverse-proxy
-  # - docker build -t udagram-reverse-proxy .
-  # - docker tag udagram-reverse-proxy ahmedmohsenyousef/udagram-reverse-proxy:latest
+  - docker build -t udagram-reverse-proxy .
+  - docker tag udagram-reverse-proxy ahmedmohsenyousef/udagram-reverse-proxy:latest
   
-  # - cd ../udagram-api-feed/
-  # - docker build -t udagram-api-feed .
-  # - docker tag udagram-api-feed ahmedmohsenyousef/udagram-api-feed:latest
+  - cd ../udagram-api-feed/
+  - docker build -t udagram-api-feed .
+  - docker tag udagram-api-feed ahmedmohsenyousef/udagram-api-feed:latest
 
-  # - cd ../udagram-api-users/
-  # - docker build -t udagram-api-users .
-  # - docker tag udagram-api-users ahmedmohsenyousef/udagram-api-users:latest
+  - cd ../udagram-api-users/
+  - docker build -t udagram-api-users .
+  - docker tag udagram-api-users ahmedmohsenyousef/udagram-api-users:latest
 
   - cd ../udagram-frontend/
   - docker build -t udagram-frontend .
@@ -38,7 +38,7 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  # - docker push ahmedmohsenyousef/udagram-reverse-proxy
-  # - docker push ahmedmohsenyousef/udagram-api-feed
-  # - docker push ahmedmohsenyousef/udagram-api-users
+  - docker push ahmedmohsenyousef/udagram-reverse-proxy
+  - docker push ahmedmohsenyousef/udagram-api-feed
+  - docker push ahmedmohsenyousef/udagram-api-users
   - docker push ahmedmohsenyousef/udagram-frontend

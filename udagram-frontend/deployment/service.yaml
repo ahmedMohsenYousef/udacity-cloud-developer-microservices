@@ -8,4 +8,4 @@ spec:
   ports:
     - name: udagram-frontend
       port: 8100
-      targetPort: 8100
+      targetPort: 80
