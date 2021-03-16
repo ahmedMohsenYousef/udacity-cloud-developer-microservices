@@ -9,7 +9,8 @@ import {NextFunction} from 'connect';
 
 import * as EmailValidator from 'email-validator';
 import {config} from 'bluebird';
-
+import { UUIDV4 } from 'sequelize';
+const uuid = require('uuid');
 const router: Router = Router();
 
 
@@ -53,8 +54,11 @@ router.get('/verification',
     });
 
 router.post('/login', async (req: Request, res: Response) => {
+  let pid = uuid.v4();
   const email = req.body.email;
   const password = req.body.password;
+
+  console.log(new Date().toLocaleString() +" "+pid+" "+email+" requested login...");
 
   if (!email || !EmailValidator.validate(email)) {
     return res.status(400).send({auth: false, message: 'Email is required or malformed.'});
@@ -66,15 +70,18 @@ router.post('/login', async (req: Request, res: Response) => {
 
   const user = await User.findByPk(email);
   if (!user) {
+    console.log(new Date().toLocaleString() +" "+pid+" "+email+" was not found...");
     return res.status(401).send({auth: false, message: 'User was not found..'});
   }
 
   const authValid = await comparePasswords(password, user.passwordHash);
 
   if (!authValid) {
+    console.log(new Date().toLocaleString() +" "+pid+" "+email+" Password was invalid...");
     return res.status(401).send({auth: false, message: 'Password was invalid.'});
   }
 
+  console.log(new Date().toLocaleString() +" "+pid+" "+email+" logged in successfully...");
   const jwt = generateJWT(user);
   res.status(200).send({auth: true, token: jwt, user: user.short()});
 });
