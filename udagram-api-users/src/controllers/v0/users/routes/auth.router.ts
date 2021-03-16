@@ -9,7 +9,6 @@ import {NextFunction} from 'connect';
 
 import * as EmailValidator from 'email-validator';
 import {config} from 'bluebird';
-import { UUIDV4 } from 'sequelize';
 const uuid = require('uuid');
 const router: Router = Router();
 
