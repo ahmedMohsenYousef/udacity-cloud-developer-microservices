@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-backend-users
+spec:
+  selector:
+    app: udagram-backend-users
+  ports:
+    - name: users
+      port: 8082
+      targetPort: 8082

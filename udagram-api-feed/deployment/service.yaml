@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-backend-feed
+spec:
+  selector:
+    app: udagram-backend-feed
+  ports:
+    - name: feed
+      port: 8081
+      targetPort: 8081
